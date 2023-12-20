@@ -1,6 +1,7 @@
 package dev.piccodev.domain.category;
 
 import dev.piccodev.domain.AgregateRoot;
+import dev.piccodev.domain.validation.ValidationHandler;
 
 import java.time.Instant;
 import java.util.UUID;
@@ -46,6 +47,13 @@ public class Category extends AgregateRoot<CategoryID> {
         final var now = Instant.now();
 
         return new Category(id, name, description, isActive, now, now, null);
+    }
+
+    /* A categoria sabe se validar chamando o seu validator. */
+    @Override
+    public void validate(final ValidationHandler handler){
+
+        new CategoryValidator(this, handler).validate();
     }
 
     public CategoryID getId() {
