@@ -45,8 +45,9 @@ public class Category extends AgregateRoot<CategoryID> {
 
         final var id = CategoryID.from(UUID.randomUUID());
         final var now = Instant.now();
+        final var deletedAt = isActive ? null : now;
 
-        return new Category(id, name, description, isActive, now, now, null);
+        return new Category(id, name, description, isActive, now, now, deletedAt);
     }
 
     /* A categoria sabe se validar chamando o seu validator. */
