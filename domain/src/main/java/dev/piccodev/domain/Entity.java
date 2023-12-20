@@ -1,5 +1,7 @@
 package dev.piccodev.domain;
 
+import dev.piccodev.domain.validation.ValidationHandler;
+
 import java.util.Objects;
 
 /* Como uma entidade é definida pelo seu ID, uma entidade pode ser qualquer coisa, desde
@@ -14,6 +16,10 @@ public abstract class Entity<ID extends Identifier> {
 
         this.id = id;
     }
+
+    /* Será uma interface para que, a cada vez que a validação for feita, um handler diferente
+    * poderá ser utilizado. */
+    public abstract void validate(ValidationHandler handler);
 
     public ID getId() {
         return id;
