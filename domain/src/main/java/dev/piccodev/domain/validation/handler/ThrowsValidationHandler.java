@@ -8,7 +8,7 @@ import java.util.List;
 
 /* Esse handler lançará uma exception sempre que ele receber um erro. */
 
-/* Ele não será acumulativo. */
+/* Ele não será acumulativo. Nesse handler, não implementaremos o "Notification Pattern". */
 public class ThrowsValidationHandler implements ValidationHandler {
 
     @Override
