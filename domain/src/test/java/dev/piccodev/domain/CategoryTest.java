@@ -1,6 +1,8 @@
 package dev.piccodev.domain;
 
 import dev.piccodev.domain.category.Category;
+import dev.piccodev.domain.exceptions.DomainException;
+import dev.piccodev.domain.validation.handler.ThrowsValidationHandler;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -35,10 +37,10 @@ public class CategoryTest {
 
         final var actualCategory = Category.newCategory(expectedName, expectedDescription, expectedIsActive);
 
-        final var actualException = Assertions.assertThrows(DomainException.class, () -> actualCategory.validate());
+        final var actualException = Assertions.assertThrows(DomainException.class, () -> actualCategory.validate(new ThrowsValidationHandler()));
 
         final var expectedErrorMessage = "'name' should not be null";
-        Assertions.assertEquals(expectedErrorMessage, actualException.getErrors().get(0).getMessage());
+        Assertions.assertEquals(expectedErrorMessage, actualException.getErrors().get(0).message());
 
         final var expectedErrorCount = 1;
         Assertions.assertEquals(expectedErrorCount, actualException.getErrors().size());
