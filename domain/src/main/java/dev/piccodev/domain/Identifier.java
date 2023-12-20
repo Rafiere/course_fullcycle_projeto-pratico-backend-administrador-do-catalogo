@@ -1,4 +1,4 @@
 package dev.piccodev.domain;
 
-public class Identifier extends ValueObject {
+public abstract class Identifier extends ValueObject {
 }
